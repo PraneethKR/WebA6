@@ -73,20 +73,20 @@ app.post("/api/user/login",(req, res) => {
 app.get("/api/user/favourites", passport.authenticate('jwt', { session: false }), (req, res) => {
     userService.getFavourites(req.user._id)
         .then((user) => {
-            res.json({ data: user });
+            res.json(user);
         })
         .catch((msg) => {
-            res.json({ "message": msg });
+            res.json(msg);
         })
 })
 
 app.put("/api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
     userService.addFavourite(req.user._id, req.params.id)
         .then((user) => {
-            res.json({ data: user });
+            res.json(user);
         })
         .catch((msg) => {
-            res.json({ "message": msg });
+            res.json(msg);
         })
 })
 
@@ -94,10 +94,10 @@ app.delete("/api/user/favourites/:id",passport.authenticate('jwt',{session:false
     userService.removeFavourite(req.user._id,req.params.id)
     .then((user)=>
     {
-        res.json({data:user});
+        res.json(user);
     })
     .catch((msg)=>{
-        res.json({"message":msg});
+        res.json(msg);
     })
 })
 
